@@ -21,9 +21,6 @@
                 array_push($GLOBALS["varelser"], $varelse);
             }
         }
-        else {
-            $_POST['number'] = "0";
-        }
     };
     createMonster();
 ?>
