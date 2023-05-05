@@ -6,25 +6,23 @@
         $squaresAmount = 0;
         $usedColors = [];
         $i = 0;
-        if(isset($_POST["squareSize"])){
-            $squaresAmount = $squreSize*$squreSize;
-            while ($i < $squreSize) {
-                $chosenColor = $allColors[rand(0, sizeof($allColors)-1)];
-                if(sizeof($usedColors)===0){
-                    array_push($usedColors, $chosenColor);
-                    $i=$i+1;
+        $squaresAmount = $squreSize*$squreSize;
+        while ($i < $squreSize) {
+            $chosenColor = $allColors[rand(0, sizeof($allColors)-1)];
+            if(sizeof($usedColors)===0){
+                array_push($usedColors, $chosenColor);
+                $i=$i+1;
+            }
+            else {
+                $found = 0;
+                foreach($usedColors as $color){
+                    if($color == $chosenColor) {
+                        $found++;
+                    }
                 }
-                else {
-                    $found = 0;
-                    foreach($usedColors as $color){
-                        if($color == $chosenColor) {
-                            $found++;
-                        }
-                    }
-                    if($found == 0){
-                        array_push($usedColors, $chosenColor);
-                        $i++;
-                    }
+                if($found == 0){
+                    array_push($usedColors, $chosenColor);
+                    $i++;
                 }
             }
         }
