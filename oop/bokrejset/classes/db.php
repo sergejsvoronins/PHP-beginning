@@ -2,7 +2,7 @@
 
 class DB {
 
-    private $pdo;
+    protected $pdo;
 
     public function __construct(PDO $pdo)
     {
@@ -12,7 +12,7 @@ class DB {
     public function getAll($table)
     {
         if($table == "userbook"){
-            $query = "SELECT ub.id, ub.userId, ub.bookId, ub.pages, ub.comment, u.firstName, u.lastName, u.email, u.mobile, b.title, b.author FROM `userbook` AS ub 
+            $query = "SELECT ub.id, ub.userId, ub.bookId, ub.pages, ub.comment, u.firstName, u.lastName, u.email, u.mobile, b.title FROM `userbook` AS ub 
             JOIN users AS u ON u.id=ub.userId 
             JOIN books AS b ON b.id=ub.bookId";
         }
@@ -23,16 +23,6 @@ class DB {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);   
     }
-    public function createBook (string $title, string $author) {
-        $query = "INSERT INTO `books`(`title`, `author`) VALUES ('$title','$author')";
-        $stmt = $this->pdo->prepare($query);
-        $stmt->execute();
-    }
-    // public function createUser (string $firstName, string $lastName, string $email, string $mobile) {
-    //     $query = "INSERT INTO `users`(`firstName`, `lastName`, `email`, `mobile`) VALUES ('$firstName','$lastName', '$email', '$mobile')";
-    //     $stmt = $this->pdo->prepare($query);
-    //     $stmt->execute();
-    // }
     public function addUserBook (int $userId, int $bookId, int $pages, string $comment) {
         $query = "INSERT INTO `userbook`(`userId`, `bookId`, `pages`, `comment`) VALUES ('$userId','$bookId', '$pages', '$comment')";
         $stmt = $this->pdo->prepare($query);
@@ -51,12 +41,7 @@ class DB {
         $stmt = $this->pdo->prepare($query);
         $stmt->execute();
     }
-    public function getAllReviewsByUser (int $id) {
-        $query = "SELECT ub.comment FROM userbook AS ub
-                WHERE ub.userId = $id;";
-        $stmt = $this->pdo->prepare($query);
-        $stmt->execute();
-    }
+
     
 
 }
