@@ -1,21 +1,21 @@
 <?php
 
 require 'classes/db.php';
-require 'classes/user.php';
+require 'classes/user-model.php';
 require 'classes/user-view.php';
-require 'classes/book.php';
+require 'classes/book-model.php';
 require 'classes/book-view.php';
-require 'classes/userbook.php';
+require 'classes/userbook-model.php';
 require 'classes/userbook-view.php';
 $pdo = require 'partials/connect.php';
 
 $db = new DB($pdo);
-$userModel = new User($pdo);
+$userModel = new UserModel($pdo);
 $users = $userModel->getAllUsers();
 $userView = new UserView();
-$bookModel = new Book($pdo);
+$bookModel = new BookModel($pdo);
 $bookView = new BookView();
-$userBookModel = new UserBook($pdo);
+$userBookModel = new UserBookModel($pdo);
 $userBookView = new UserBookView();
 
 
