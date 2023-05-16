@@ -86,7 +86,7 @@ class RenderAllApp {
                 <?php 
                 $renderar = New RenderAllApp();
                 $renderar->showAllColors($allColors);
-                $renderar->showUnicorns($chosenColor, createUnicornsList((int)$input));
+                $renderar->showUnicorns($chosenColor, createUnicornsList(100));
                 echo $input;
                 ?>
             </div>
