@@ -1,0 +1,30 @@
+.create_div {
+    text-align: center;
+    padding: 1rem;
+    background-color: greenyellow;
+    border-radius: 0.2rem;
+}
+.create_div a{
+    text-decoration: none;
+    color: black;
+    width: 100%;
+}
+.create_div:hover{
+    cursor: pointer;
+    transform: scale(1.02);
+}
+ol {
+    display: flex;
+    flex-direction: column;
+}
+ol li {
+    padding: 0.4rem;
+}
+ol li a {
+    text-decoration: none;
+    color: black;
+}
+ol li a:hover {
+    cursor: pointer;
+    font-weight: 700;
+}

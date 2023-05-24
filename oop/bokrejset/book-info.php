@@ -13,10 +13,12 @@ $reviewView = new UserBookView();
 
 include 'partials/header.php';
 include 'partials/nav.php';
+include 'partials/main-start.php';
 if(isset($_GET["id"])){
     $id=filter_var((int)$_GET["id"], FILTER_SANITIZE_NUMBER_INT);
     $bookView->renderSingleBook($bookModel->getAllBooks(), $id);
     $reviewView->renderAllBookCommentsAsList($reviewModel->getAllUserBooks(), $id);
 }
+include 'partials/main-end.php';
 include 'partials/footer.php';
 

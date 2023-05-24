@@ -12,9 +12,9 @@ class DB {
     public function getAll($table)
     {
         if($table == "userbook"){
-            $query = "SELECT ub.id, ub.userId, ub.bookId, ub.pages, ub.comment, u.firstName, u.lastName, u.email, u.mobile, b.title FROM `userbook` AS ub 
-            JOIN users AS u ON u.id=ub.userId 
-            JOIN books AS b ON b.id=ub.bookId";
+            $query = "SELECT ub.id, ub.user_id, ub.book_id, ub.pages, ub.comment, u.first_name, u.last_name, u.email, u.mobile, b.title FROM `userbook` AS ub 
+            JOIN users AS u ON u.id=ub.user_id 
+            JOIN books AS b ON b.id=ub.book_id";
         }
         else {
             $query = "SELECT * FROM $table";
@@ -24,20 +24,20 @@ class DB {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);   
     }
     public function addUserBook (int $userId, int $bookId, int $pages, string $comment) {
-        $query = "INSERT INTO `userbook`(`userId`, `bookId`, `pages`, `comment`) VALUES ('$userId','$bookId', '$pages', '$comment')";
+        $query = "INSERT INTO `userbook`(`user_id`, `book_id`, `pages`, `comment`) VALUES ('$userId','$bookId', '$pages', '$comment')";
         $stmt = $this->pdo->prepare($query);
         $stmt->execute();
     }
     public function getBooksAmountByUser (int $id) {
-        $query = "SELECT COUNT(ub.userId) FROM userbook AS ub
-                WHERE ub.userId = $id
-                GROUP BY ub.userId;";
+        $query = "SELECT COUNT(ub.user_id) FROM userbook AS ub
+                WHERE ub.user_id = $id
+                GROUP BY ub.user_id;";
         $stmt = $this->pdo->prepare($query);
         $stmt->execute();
     }
     public function getAmountPagesByUser (int $id) {
         $query = "SELECT SUM(ub.pages) FROM userbook AS ub
-                WHERE ub.userId = $id;";
+                WHERE ub.user_id = $id;";
         $stmt = $this->pdo->prepare($query);
         $stmt->execute();
     }

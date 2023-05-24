@@ -12,7 +12,8 @@ $userBookView = new UserBookView();
 
 include 'partials/header.php';
 include 'partials/nav.php';
+include 'partials/main-start.php';
 
-$userBookView->renderAllUserBooksAsList($userBookModel->getAllUserBooks());
-
+$userBookView->renderReviewTableByPages($userBookModel->getReviewByRedPages());
+include 'partials/main-end.php';
 include 'partials/footer.php';
