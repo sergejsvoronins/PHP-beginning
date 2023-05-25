@@ -1,10 +1,10 @@
 <?php
 require_once 'db.php';
-class UserBookModel extends DB {
+class ReviewModel extends DB {
 
     protected $table = "userbook";
 
-    public function getAllUserBooks():array{
+    public function getAllReviews():array{
         return $this->getAll($this->table);
     }
     public function getAllReviewsByUser (int $id):void {
@@ -13,7 +13,7 @@ class UserBookModel extends DB {
         $stmt = $this->pdo->prepare($query);
         $stmt->execute();
     }
-    public function createUserBook (int $userId, int $bookId, int $pages, string $comment) : void{
+    public function createReview (int $userId, int $bookId, int $pages, string $comment) : void{
         $query = "INSERT INTO $this->table (`user_id`, `book_id`, `pages`, `comment`) VALUES (?,?,?,?)";
         $stmt = $this->pdo->prepare($query);
         $stmt->execute([$userId, $bookId, $pages, $comment]);

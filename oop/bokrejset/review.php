@@ -1,19 +1,18 @@
 <?php
 require 'classes/db.php';
 
-require 'classes/userbook-model.php';
-require 'classes/userbook-view.php';
+require 'classes/review-model.php';
+require 'classes/review-view.php';
 
 $pdo = require 'partials/connect.php';
-$db = new DB($pdo);
 
-$userBookModel = new UserBookModel($pdo);
-$userBookView = new UserBookView();
+$reviewkModel = new ReviewModel($pdo);
+$reviewkView = new ReviewView();
+
 
 include 'partials/header.php';
 include 'partials/nav.php';
-include 'partials/main-start.php';
 
-$userBookView->renderReviewTableByPages($userBookModel->getReviewByRedPages());
-include 'partials/main-end.php';
+$reviewkView->renderReviewTableByPages($reviewkModel->getReviewByRedPages());
+
 include 'partials/footer.php';

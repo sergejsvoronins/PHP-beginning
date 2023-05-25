@@ -1,26 +1,9 @@
 <?php
 
 
-class UserBookView {
+class ReviewView {
 
-    public function renderAllUserBooksAsList(array $userBooks):void {
-        echo "<ul>";
-        foreach($userBooks as $userBook){
-            echo "<li>Id: {$userBook['id']} Titel: {$userBook['title']} Sidor: {$userBook['pages']}</li>";
-        }
-        echo "</ul>";
-    }
-    public function renderAllBookCommentsAsList (array $userBooks, int $id) {
-        echo "<h2>Kommentarer:</h2>";
-        echo "<ul>";
-        foreach($userBooks as $userBook){
-            if($userBook["book_id"] == $id) {
-                echo "<li>{$userBook["comment"]}</li>";
-            }
-        }
-        echo "</ul>";
-    }
-    public function renderCreateUserBookForm ($users, $books) {
+    public function renderCreateReview ($users, $books) {
         echo "<form action='form-handlers/userbook-form-handler.php' method='POST'>
             <h3>Registrera din lästa bok</h3>
             <div>
@@ -28,7 +11,7 @@ class UserBookView {
                 <select name='user_id' id='user_id'>
                     <option value=''>--Välj från listan--</option>";
                     foreach($users as $user){
-                        echo "<option value='{$user['id']}'>{$user['first_name']} {$user['last_name']}</option>";
+                        echo "<option value='{$user->getId()}'>{$user->getFirstName()} {$user->getLastName()}</option>";
                     } 
                 echo "</select>
                 <a href='users.php'>Lägg till</a>
@@ -49,14 +32,13 @@ class UserBookView {
             </div>
             <div>
                 <label for='comment'>Recension:</label>
-                <textarea id='comment' name='comment'
-                    rows='5' cols='33'>Skriv din recension här...
+                <textarea  id='comment' name='comment'>
                 </textarea>
             </div>
             <button>Skapa</button>
         </form>";
     }
-    public function renderReviewTableByPages (array $reviewList) {
+    public function renderReviewTableByPages (array $reviews) {
         echo "<h1>Resultattabell</h1>";
         echo "<table>";
             echo "<tr>";
@@ -66,16 +48,23 @@ class UserBookView {
                 echo "<th>Antal lästa böcker</th>";
                 echo "<th>Antal lästa sidor</th>";
             echo "</tr>";
-            for ($i=0; $i < count($reviewList); $i++) { 
+            for ($i=0; $i < count($reviews); $i++) { 
                 echo "<tr>";
                     echo "<td>". $i+1 ."</td>";
-                    echo "<td>{$reviewList[$i]['first_name']}</td>";
-                    echo "<td>{$reviewList[$i]['last_name']}</td>";
-                    echo "<td>{$reviewList[$i]['books_amount']}</td>";
-                    echo "<td>{$reviewList[$i]['number_of_pages']}</td>";
+                    echo "<td>{$reviews[$i]['first_name']}</td>";
+                    echo "<td>{$reviews[$i]['last_name']}</td>";
+                    echo "<td>{$reviews[$i]['books_amount']}</td>";
+                    echo "<td>{$reviews[$i]['number_of_pages']}</td>";
             echo "</tr>";
             }
         echo "</table>";
+    }
+    public function renderReviewMain (array $users, array $books) {
+        echo "<main>";
+        echo "<section>";
+            echo $this->renderCreateReview($users, $books);
+        echo "</section>";
+    echo "</main>";
     }
 
 }

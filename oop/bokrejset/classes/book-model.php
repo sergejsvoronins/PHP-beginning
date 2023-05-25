@@ -5,36 +5,37 @@ require 'book.php';
 class BookModel extends DB {
 
     protected $table = "books";
-
-    public function getAllBooks(){
-         $books = [];
-        // return $this->getAll($this->table);
-        $ass_array =  $this->getAll($this->table);
-        foreach ($ass_array as $element) {
+    public function convertToBookClass (array $books) : array {
+        $classBooks = [];
+        foreach ($books as $element) {
             $book = new Book ($element["id"], $element["title"], $element["year"]);
-            array_push($books, $book);
+            array_push($classBooks, $book);
         }
-        return $books;
+        return $classBooks;
     }
-    public function createBook (string $title,  int $year, int $authorId) {
+    public function getAllBooks() : array{
+        return $this->convertToBookClass($this->getAll($this->table));
+    }
+    public function getOneBook( int $id ) : array{
+        $query = "SELECT * FROM $this->table WHERE id = ?";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute([$id]);
+        return $this->convertToBookClass($stmt->fetchAll(PDO::FETCH_ASSOC));
+        
+    }
+    public function createBook (string $title,  int $year, int $authorId) : void {
         $query = "INSERT INTO $this->table (`title`, `year`, `author_id`) VALUES (?,?,?)";
         $stmt = $this->pdo->prepare($query);
         $stmt->execute([$title, $year, $authorId]);
     }
     public function findBooks (string $text) : array{
-        $books = [];
-        $query = "SELECT * FROM books WHERE books.title LIKE '%$text%';";
+        $query = "SELECT * FROM $this->table WHERE books.title LIKE '%$text%';";
         $stmt = $this->pdo->prepare($query);
         $stmt->execute();
-        $ass_array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($ass_array as $element) {
-            $book = new Book ($element["id"], $element["title"], $element["year"]);
-            array_push($books, $book);
-        }
-        return $books;
+        return $this->convertToBookClass($stmt->fetchAll(PDO::FETCH_ASSOC));
     }
-    public function getAllBooksWithStudentsCount () {
-        $query = "SELECT *, COUNT(books.id) AS 'students_count' FROM books
+    public function getAllBooksWithStudentsCount () : array {
+        $query = "SELECT *, COUNT(books.id) AS 'students_count' FROM $this->table
                     JOIN userbook ON userbook.book_id = books.id
                     GROUP BY books.id;";
         $stmt = $this->pdo->prepare($query);

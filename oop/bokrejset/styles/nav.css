@@ -1,18 +1,21 @@
 nav {
+    height: 10vh;
     display: flex;
     justify-content: end;
-    gap: 1rem;
-    padding: 1rem;
-    background-color: gold;
+    align-items: center;
+    gap: 2rem;
+    background-color:crimson;
+    padding: 0  1rem;
 }
-nav a{
+nav a {
+    display: flex;
+    justify-content: center;
     text-decoration: none;
     color: black;
-    font-size: 1.5rem;
-    transition: all 0.2s ease-in-out;
+    font-size: 1.2rem;
 }
-nav a:hover{
-    text-decoration: underline;
+nav a:hover {
     cursor: pointer;
-    transform: scale(1.04);
+    text-decoration: underline;
+    opacity: .6;
 }

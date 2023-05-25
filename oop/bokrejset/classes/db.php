@@ -23,24 +23,7 @@ class DB {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);   
     }
-    public function addUserBook (int $userId, int $bookId, int $pages, string $comment) {
-        $query = "INSERT INTO `userbook`(`user_id`, `book_id`, `pages`, `comment`) VALUES ('$userId','$bookId', '$pages', '$comment')";
-        $stmt = $this->pdo->prepare($query);
-        $stmt->execute();
-    }
-    public function getBooksAmountByUser (int $id) {
-        $query = "SELECT COUNT(ub.user_id) FROM userbook AS ub
-                WHERE ub.user_id = $id
-                GROUP BY ub.user_id;";
-        $stmt = $this->pdo->prepare($query);
-        $stmt->execute();
-    }
-    public function getAmountPagesByUser (int $id) {
-        $query = "SELECT SUM(ub.pages) FROM userbook AS ub
-                WHERE ub.user_id = $id;";
-        $stmt = $this->pdo->prepare($query);
-        $stmt->execute();
-    }
+
 
     
 
