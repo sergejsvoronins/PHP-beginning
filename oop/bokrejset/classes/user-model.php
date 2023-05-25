@@ -46,4 +46,22 @@ class UserModel extends DB {
         $stmt->execute([$userId]);  
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function getCompletedBooksByUser (int $id) {
+        $query = "SELECT users.id, COUNT(users.id) as completed_books FROM users
+                    JOIN userbook ON userbook.user_id=users.id
+                    WHERE users.id = ?
+                    GROUP BY users.id;";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute([$id]);  
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getCompletedPagesByUser (int $id) {
+        $query = "SELECT users.id, SUM(userbook.pages) as completed_pages FROM users
+                    JOIN userbook ON userbook.user_id=users.id
+                    WHERE users.id = ?
+                    GROUP BY users.id;";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute([$id]);  
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

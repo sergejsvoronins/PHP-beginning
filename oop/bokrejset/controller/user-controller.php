@@ -15,7 +15,16 @@ class UserController
     {
         if (isset($_GET['user-id'])) {
             $userId = filter_var($_GET['user-id'], FILTER_SANITIZE_NUMBER_INT);
-            $this->view->renderUserInfoMain($this->model->getUser($userId), $this->model->getUserComments($userId));
+            if(isset($_GET["action"])){
+                $action = filter_var($_GET['action'], FILTER_SANITIZE_SPECIAL_CHARS);
+                if($action=="delete"){
+                    $this->model->deleteUser($userId);
+                    $this->view->renderDeleteConfirmation();
+                }   
+            }
+            else {
+                $this->view->renderUserInfoMain($this->model->getUser($userId), $this->model->getUserComments($userId), $userId, $this->model->getCompletedBooksByUser($userId),$this->model->getCompletedPagesByUser($userId));
+            }
         } 
         else if (isset($_GET['create-user'])){
             if($_GET['create-user'] =="new") {

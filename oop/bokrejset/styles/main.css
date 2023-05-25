@@ -1,6 +1,12 @@
 @import "header.css";
 @import "nav.css";
 @import "home.css";
+@import "search-field.css";
+@import "create-btn.css";
+@import "content-section.css";
+@import "create-form.css";
+@import "button.css";
+@import "details.css";
 
 * {
     padding: 0;
@@ -10,5 +16,13 @@
 main {
     display: flex;
     flex-wrap: wrap;
-    height: 80vh;
+    width: 100%;
 }
+a {
+    text-decoration: none;
+    color: black;
+}
+
+
+
+

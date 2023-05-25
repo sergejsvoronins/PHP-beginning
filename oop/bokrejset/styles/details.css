@@ -1,0 +1,21 @@
+.details_section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.details_section section {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.details_section section:nth-child(1) {
+    width: 100%;
+    text-align: center;
+}
+.details_section section:nth-child(2),
+.details_section section:nth-child(3),
+.details_section section:nth-child(4) {
+    width: 30%;
+    text-align: center;
+}

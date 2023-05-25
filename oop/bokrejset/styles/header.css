@@ -6,3 +6,8 @@ header {
     padding-left: 1rem;
     align-items: end;
 }
+.header_section {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+}

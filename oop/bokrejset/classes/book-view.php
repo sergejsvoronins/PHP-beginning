@@ -4,11 +4,13 @@
 class BookView {
 
     public function renderAllBooks(array $books):void {
+        echo "<div>";
         foreach($books as $book){
             echo "<a href='?book-id={$book->getId()}'>";
             echo "<div>{$book->getTitle()} ({$book->getYear()})</div>";
             echo "</a>";
         }
+        echo "</div>";
     }
     public function renderSingleBook (array $book):void {
 
@@ -17,11 +19,9 @@ class BookView {
     }
     public function createSearchField () {
         echo "<form  action='books.php' method='POST'>
-            <div>
                 <input type='text' id='title' name='search-book' placeholder='Skriv boktitel här...'>
-            </div>
-            <button>Sök</button>
-        </form>";
+                <button class='btn'>Sök</button>
+            </form>";
     }
     public function renderCreateBookForm (array $authors) {
         echo "<form action='form-handlers/book-form-handler.php' method='POST'>
@@ -38,38 +38,42 @@ class BookView {
                 <select name='author_id' id='authors'>
                     <option value=''>--Välj från listan--</option>";
                     foreach($authors as $author){
-                        echo "<option value='{$author['id']}'>{$author['first_name']} {$author['last_name']}</option>";
-                    } 
+                        echo "<option value='{$author->getId()}'>{$author->getFirstName()} {$author->getLastName()}</option>";
+                    }
                 echo "</select>
                 <a href='authors.php?create=new'>Lägg till</a>
-            </div>
-            <button>Skapa</button>
-        </form>";
+            </div>";
+            echo "<button class='btn'>Skapa</button>";
+            echo "</form>";
     }
 
     public function renderCreateButton () {
-        echo "<div class='create_div'>
-            <a href='?create-book=new'>Skapa en book</a>
-        </div>";
+        echo "<a href='?create-book=new'>Skapa ny</a>";
     }
 
     public function renderBooksMain(array $books) {
         echo "<main>";
-            echo "<section>";
+            echo "<section class='header_section'>";
+                echo "<h1>Boklista</h1>";
+            echo "</section>";
+            echo "<section class='search_section'>";
                 echo $this->createSearchField();
             echo "</section>";
-            echo "<section>";
+            echo "<section class='create_btn_section'>";
                 echo $this->renderCreateButton();
             echo "</section>";
-            echo "<section>";
+            echo "<section class='main_content'>";
                 echo $this->renderAllBooks($books);
             echo "</section>";
         echo "</main>";
     }
     public function renderBooksFormMain (array $authors) {
         echo "<main>";
-            echo "<section>";
-            echo $this->renderCreateBookForm($authors);
+            echo "<section class='header_section'>";
+                echo "<h1>Lägg ny bok</h1>";
+            echo "</section>";
+            echo "<section class='create_form_section'>";
+                echo $this->renderCreateBookForm($authors);
             echo "</section>";
         echo "</main>";
     }

@@ -17,5 +17,4 @@ include 'partials/nav.php';
 
 $bookController = new BookController($bookModel, $bookView);
 $bookController->start($authorModel->getAllAuthors());
-
 include 'partials/footer.php';
