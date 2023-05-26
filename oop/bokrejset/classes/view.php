@@ -10,4 +10,9 @@ class View {
     public function renderCreateButton ($item) {
         echo "<a href='?create-{$item}=new'>Skapa ny</a>";
     }
+    public function renderEmptyInfoDiv () {
+        echo "<p>
+                Finns inget
+            </p>";
+    }
 }

@@ -3,16 +3,6 @@ require_once 'db.php';
 class ReviewModel extends DB {
 
     protected $table = "userbook";
-
-    // public function getAllReviews():array{
-    //     return $this->getAll($this->table);
-    // }
-    // public function getAllReviewsByUser (int $id):void {
-    //     $query = "SELECT ub.comment FROM userbook AS ub
-    //             WHERE ub.user_id = $id;";
-    //     $stmt = $this->pdo->prepare($query);
-    //     $stmt->execute();
-    // }
     public function createReview (int $userId, int $bookId, int $pages, string $comment) : void{
         $query = "INSERT INTO $this->table (`user_id`, `book_id`, `pages`, `comment`) VALUES (?,?,?,?)";
         $stmt = $this->pdo->prepare($query);

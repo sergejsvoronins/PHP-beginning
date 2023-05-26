@@ -171,10 +171,5 @@ class UserView extends View{
         echo "<button class='btn'>Uppdatera</button>";
         echo "</form>";
     }
-    public function renderEmptyInfoDiv () {
-        echo "<p>
-                Finns inget
-            </p>";
-    }
     
 }
