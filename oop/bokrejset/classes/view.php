@@ -15,4 +15,7 @@ class View {
                 Finns inget
             </p>";
     }
+    public function renderCanNotFind () {
+            echo "<h4>Hittar inget</h4>";
+    }
 }

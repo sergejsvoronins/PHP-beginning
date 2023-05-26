@@ -3,6 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-bottom: 1rem;
 }
 .create_btn_section div {
 width: 100;

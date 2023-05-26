@@ -37,7 +37,6 @@
     justify-content: center;
 }
 .main_content_review table{
-    padding: 2rem 0;
     width: 80%;
 }
 .main_content_review table tbody tr th, td{

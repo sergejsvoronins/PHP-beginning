@@ -35,13 +35,18 @@ class AuthorView extends View{
                 echo "<h1>Författare</h1>";
             echo "</section>";
             echo "<section class='search_section'>";
-                echo $this->createSearchField("authors");
+                $this->createSearchField("authors");
             echo "</section>";
             echo "<section class='create_btn_section'>";
-                echo $this->renderCreateButton("author");
+                $this->renderCreateButton("author");
             echo "</section>";
             echo "<section class='main_content'>";
-                echo $this->renderAllAuthors($authors);
+                if(count($authors)>0){
+                    $this->renderAllAuthors($authors);
+                }
+                else {
+                    $this->renderEmptyInfoDiv();
+                }
             echo "</section>";
         echo "</main>";
     }
@@ -51,7 +56,7 @@ class AuthorView extends View{
                 echo "<h1>Lägg ny författare</h1>";
             echo "</section>";
             echo "<section class='create_form_section'>";
-            echo $this->renderCreateAuthorForm();
+                $this->renderCreateAuthorForm();
             echo "</section>";
         echo "</main>";
     }

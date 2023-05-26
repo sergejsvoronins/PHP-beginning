@@ -64,13 +64,18 @@ class UserView extends View{
             echo "<h1>Användare</h1>";
             echo "</section>";
             echo "<section class='search_section'>";
-                echo $this->createSearchField("users");
+                $this->createSearchField("users");
             echo "</section>";
             echo "<section class='create_btn_section'>";
-                echo $this->renderCreateButton("user");
+                $this->renderCreateButton("user");
             echo "</section>";
             echo "<section class='main_content'>";
-                echo $this->renderAllUserAsClickableList($users);
+                if(count($users)>0) {
+                    $this->renderAllUserAsClickableList($users);
+                }
+                else {
+                    $this->renderCanNotFind();
+                }
             echo "</section>";
         echo "</main>";
     }
@@ -94,8 +99,8 @@ class UserView extends View{
                     echo "<span>{$user[0]->getMobile()}</span>";
                 echo "</div>";
                 echo "<div class='buttons'>";
-                    echo $this->renderDeleteButton($id);
-                    echo $this->renderUpdateButton($id);
+                    $this->renderDeleteButton($id);
+                    $this->renderUpdateButton($id);
                 echo "</div>";
             echo "</section>";
             echo "<section>";
@@ -129,7 +134,7 @@ class UserView extends View{
         echo "<h1>Lägg ny användare</h1>";
         echo "</section>";
         echo "<section class='create_form_section'>";
-        echo $this->renderCreateUserForm();
+            $this->renderCreateUserForm();
         echo "</section>";
         echo "</main>";
     }
@@ -139,7 +144,7 @@ class UserView extends View{
         echo "<h1>Uppdatera användare</h1>";
         echo "</section>";
         echo "<section class='create_form_section'>";
-        echo $this->renderUpdateUserForm($user);
+            $this->renderUpdateUserForm($user);
         echo "</section>";
         echo "</main>";
     }

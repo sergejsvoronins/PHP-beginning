@@ -26,6 +26,5 @@ class ReviewController
 
             $this->view->renderReviewTableByPages($this->model->getReviewByRedPages());
         }
-        // $reviewkView->renderReviewTableByPages($reviewkModel->getReviewByRedPages());
     }
 }

@@ -47,13 +47,18 @@ class BookView extends View {
                 echo "<h1>Boklista</h1>";
             echo "</section>";
             echo "<section class='search_section'>";
-                echo $this->createSearchField("books");
+                $this->createSearchField("books");
             echo "</section>";
             echo "<section class='create_btn_section'>";
-                echo $this->renderCreateButton("book");
+                $this->renderCreateButton("book");
             echo "</section>";
             echo "<section class='main_content'>";
-                echo $this->renderAllBooks($books);
+                if(count($books)>0){
+                     $this->renderAllBooks($books);
+                }
+                else {
+                    $this->renderCanNotFind();
+                }
             echo "</section>";
         echo "</main>";
     }
@@ -63,14 +68,14 @@ class BookView extends View {
                 echo "<h1>Lägg ny bok</h1>";
             echo "</section>";
             echo "<section class='create_form_section'>";
-                echo $this->renderCreateBookForm($authors);
+                $this->renderCreateBookForm($authors);
             echo "</section>";
         echo "</main>";
     }
     public function renderOneBookMain (array $book) {
         echo "<main>";
             echo "<section>";
-            echo $this->renderSingleBook($book);
+                $this->renderSingleBook($book);
             echo "</section>";
         echo "</main>";
     }

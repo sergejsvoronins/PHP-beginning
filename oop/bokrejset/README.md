@@ -39,7 +39,8 @@ Hem
 På hemsidan visas resultattabell med sökfält samt en knapp för att registrera lästa boken
 
 Användare
-Sidan där man kan skapa användare samt se en lista på alla registrerade användare som är länkar i sin tur till användarens sida. Klickar man på ett namn så kan man se alla dess person info, dvs upgifter, hur många böcker hen har läst, sidor samt kommentarer
+Sidan där man kan skapa användare samt se en lista på alla registrerade användare som är länkar i sin tur till användarens sida. Klickar man på ett namn så kan man se alla dess person info, dvs upgifter, hur många böcker den personen har läst, sidor samt kommentarer. 
+CRUD är implementerat på sidan, så man kan uppdatera personens upgifter samt ta bort personen. 
 
 Böcker
 Består av:
@@ -50,3 +51,6 @@ Består av:
 Författare
     formulär för attt skapa en ny författare
     en lista på alla förafattare
+
+
+OBS! CRUD finns bara på users sida. Har inte hunnit att implementera på andra ställen. 

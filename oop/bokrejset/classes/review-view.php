@@ -43,30 +43,35 @@ class ReviewView extends View {
                 echo "<h1>Revy tabell</h1>";
             echo "</section>";
             echo "<section class='search_section'>";
-                echo $this->createSearchField("reviews");
+                $this->createSearchField("reviews");
             echo "</section>";
             echo "<section class='create_btn_section'>";
-                echo $this->renderCreateButton("review");
+                $this->renderCreateButton("review");
             echo "</section>";
             echo "<section class='main_content_review'>";
-                echo "<table>";
-                    echo "<tr>";
-                        echo "<th>Plats</th>";
-                        echo "<th>Förnamn</th>";
-                        echo "<th>Efternamn</th>";
-                        echo "<th>Antal lästa böcker</th>";
-                        echo "<th>Antal lästa sidor</th>";
-                    echo "</tr>";
-                    for ($i=0; $i < count($reviews); $i++) { 
+                if(count($reviews)>0){
+                    echo "<table>";
                         echo "<tr>";
-                            echo "<td>". $i+1 ."</td>";
-                            echo "<td>{$reviews[$i]['first_name']}</td>";
-                            echo "<td>{$reviews[$i]['last_name']}</td>";
-                            echo "<td>{$reviews[$i]['books_amount']}</td>";
-                            echo "<td>{$reviews[$i]['number_of_pages']}</td>";
-                    echo "</tr>";
-                    }
-                echo "</table>";
+                            echo "<th>Plats</th>";
+                            echo "<th>Förnamn</th>";
+                            echo "<th>Efternamn</th>";
+                            echo "<th>Antal lästa böcker</th>";
+                            echo "<th>Antal lästa sidor</th>";
+                        echo "</tr>";
+                        for ($i=0; $i < count($reviews); $i++) { 
+                            echo "<tr>";
+                                echo "<td>". $i+1 ."</td>";
+                                echo "<td>{$reviews[$i]['first_name']}</td>";
+                                echo "<td>{$reviews[$i]['last_name']}</td>";
+                                echo "<td>{$reviews[$i]['books_amount']}</td>";
+                                echo "<td>{$reviews[$i]['number_of_pages']}</td>";
+                        echo "</tr>";
+                        }
+                    echo "</table>";
+                }
+                else {
+                    $this->renderEmptyInfoDiv();
+                }
             echo "</section>";
         echo "</main>";
     }
@@ -76,7 +81,7 @@ class ReviewView extends View {
                 echo "<h1>Registrera lästa boken</h1>";
             echo "</section>";
             echo "<section class='create_form_section'>";
-                echo $this->renderCreateReview($users, $books);
+                $this->renderCreateReview($users, $books);
             echo "</section>";
         echo "</main>";
     }
