@@ -64,4 +64,9 @@ class UserModel extends DB {
         $stmt->execute([$id]);  
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function updateUser (string $fname, string $lname, string $epost, string $mobile, int $id) {
+        $query = "UPDATE users SET first_name = ?, last_name = ?, email = ?, mobile = ? WHERE users.id = ?;";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute([$fname, $lname, $epost, $mobile, $id]);  
+    }
 }

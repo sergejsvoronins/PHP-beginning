@@ -14,13 +14,16 @@ class UserController
     public function start()
     {
         if (isset($_GET['user-id'])) {
-            $userId = filter_var($_GET['user-id'], FILTER_SANITIZE_NUMBER_INT);
+            $userId = filter_var((int)$_GET['user-id'], FILTER_SANITIZE_NUMBER_INT);
             if(isset($_GET["action"])){
                 $action = filter_var($_GET['action'], FILTER_SANITIZE_SPECIAL_CHARS);
                 if($action=="delete"){
                     $this->model->deleteUser($userId);
                     $this->view->renderDeleteConfirmation();
-                }   
+                } 
+                else if ($action == "update"){
+                    $this->view->renderUpdateUserFormMain($this->model->getUser($userId));
+                }  
             }
             else {
                 $this->view->renderUserInfoMain($this->model->getUser($userId), $this->model->getUserComments($userId), $userId, $this->model->getCompletedBooksByUser($userId),$this->model->getCompletedPagesByUser($userId));
