@@ -1,7 +1,7 @@
 <?php
 
-// require 'book.php';
-class BookView {
+require "view.php";
+class BookView extends View {
 
     public function renderAllBooks(array $books):void {
         echo "<div>";
@@ -16,12 +16,6 @@ class BookView {
 
                 echo "<h2>{$book[0]->getTitle()}</h2>";
                 echo "<h3>År: {$book[0]->getYear()}</h3>";
-    }
-    public function createSearchField () {
-        echo "<form  action='books.php' method='POST'>
-                <input type='text' id='title' name='search-book' placeholder='Skriv boktitel här...'>
-                <button class='btn'>Sök</button>
-            </form>";
     }
     public function renderCreateBookForm (array $authors) {
         echo "<form action='form-handlers/book-form-handler.php' method='POST'>
@@ -47,20 +41,16 @@ class BookView {
             echo "</form>";
     }
 
-    public function renderCreateButton () {
-        echo "<a href='?create-book=new'>Skapa ny</a>";
-    }
-
     public function renderBooksMain(array $books) {
         echo "<main>";
             echo "<section class='header_section'>";
                 echo "<h1>Boklista</h1>";
             echo "</section>";
             echo "<section class='search_section'>";
-                echo $this->createSearchField();
+                echo $this->createSearchField("books");
             echo "</section>";
             echo "<section class='create_btn_section'>";
-                echo $this->renderCreateButton();
+                echo $this->renderCreateButton("book");
             echo "</section>";
             echo "<section class='main_content'>";
                 echo $this->renderAllBooks($books);

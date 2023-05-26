@@ -24,8 +24,8 @@ class BookController
             }
         }
         else {
-            if(isset($_POST["search-book"])){
-                $searchText = filter_var($_POST["search-book"], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            if(isset($_POST["search-books"])){
+                $searchText = filter_var($_POST["search-books"], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $this->view->renderBooksMain($this->model->findBooks($searchText));
             }
             else {

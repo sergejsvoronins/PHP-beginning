@@ -1,6 +1,6 @@
 <?php
-
-class AuthorView {
+require "view.php";
+class AuthorView extends View{
     public function renderAllAuthors (array $authors) {
         echo "<div>";
         foreach($authors as $author){
@@ -29,19 +29,16 @@ class AuthorView {
         echo "<button class='btn'>Skapa</button>";
         echo "</form>";
     }
-    public function renderCreateButton () {
-        echo "<a href='?create-author=new'>Skapa ny</a>";
-    }
     public function renderAuthorsMain(array $authors) {
         echo "<main>";
             echo "<section class='header_section'>";
                 echo "<h1>Författare</h1>";
             echo "</section>";
             echo "<section class='search_section'>";
-                echo $this->createSearchField();
+                echo $this->createSearchField("authors");
             echo "</section>";
             echo "<section class='create_btn_section'>";
-                echo $this->renderCreateButton();
+                echo $this->renderCreateButton("author");
             echo "</section>";
             echo "<section class='main_content'>";
                 echo $this->renderAllAuthors($authors);
@@ -65,10 +62,5 @@ class AuthorView {
             echo "</section>";
         echo "</main>";
     }
-    public function createSearchField () {
-        echo "<form  action='authors.php' method='POST'>
-                <input type='text' name='search-authors' placeholder='Skriv namn här...'>
-                <button class='btn'>Sök</button>
-            </form>";
-    }
+
 }

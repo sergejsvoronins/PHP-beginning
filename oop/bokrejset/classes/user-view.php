@@ -1,7 +1,7 @@
 <?php
+require "view.php";
 
-
-class UserView {
+class UserView extends View{
 
     public function renderAllUserAsClickableList (array $users):void {
         echo "<div>";
@@ -11,9 +11,6 @@ class UserView {
             echo "</a>";
         }
         echo "</div>";
-    }
-    public function renderCreateButton () {
-        echo "<a href='?create-user=new'>Skapa ny</a>";
     }
     public function renderDeleteButton (int $id) {
         echo "<a href='?user-id={$id}&action=delete'>Ta bort</a>";
@@ -61,22 +58,16 @@ class UserView {
             $this->renderEmptyInfoDiv();
         }
     }
-    public function createSearchField () {
-        echo "<form  action='users.php' method='POST'>
-                <input method='POST' type='text' name='search-users' placeholder='Skriv namn här...'>
-                <button class='btn'>Sök</button>
-                </form>";
-            }
     public function renderUsersMain(array $users) {
         echo "<main>";
             echo "<section class='header_section'>";
             echo "<h1>Användare</h1>";
             echo "</section>";
             echo "<section class='search_section'>";
-                echo $this->createSearchField();
+                echo $this->createSearchField("users");
             echo "</section>";
             echo "<section class='create_btn_section'>";
-                echo $this->renderCreateButton();
+                echo $this->renderCreateButton("user");
             echo "</section>";
             echo "<section class='main_content'>";
                 echo $this->renderAllUserAsClickableList($users);

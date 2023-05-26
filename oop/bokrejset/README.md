@@ -36,10 +36,10 @@ Navigering
     författare
     revy
 Hem
-På hemsidan registrerar man böcker som man har läst
+På hemsidan visas resultattabell med sökfält samt en knapp för att registrera lästa boken
 
 Användare
-Sidan där man kan skapa användare samt se en lista på alla registrerade användare som är länkar i sin tur. Klickar man på ett namn så kan man se alla dess person kommentarer
+Sidan där man kan skapa användare samt se en lista på alla registrerade användare som är länkar i sin tur till användarens sida. Klickar man på ett namn så kan man se alla dess person info, dvs upgifter, hur många böcker hen har läst, sidor samt kommentarer
 
 Böcker
 Består av:
@@ -50,6 +50,3 @@ Består av:
 Författare
     formulär för attt skapa en ny författare
     en lista på alla förafattare
-
-Revy
-En tabell som presenterar resultat på lästävlingen

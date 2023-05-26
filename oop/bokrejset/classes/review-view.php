@@ -1,7 +1,7 @@
 <?php
 
-
-class ReviewView {
+require "view.php";
+class ReviewView extends View {
 
     public function renderCreateReview ($users, $books) {
         echo "<form action='form-handlers/userbook-form-handler.php' method='POST'>";
@@ -40,7 +40,13 @@ class ReviewView {
     public function renderReviewTableByPages (array $reviews) {
         echo "<main>";
             echo "<section class='header_section'>";
-                echo "<h1>Resultattabell</h1>";
+                echo "<h1>Revy tabell</h1>";
+            echo "</section>";
+            echo "<section class='search_section'>";
+                echo $this->createSearchField("reviews");
+            echo "</section>";
+            echo "<section class='create_btn_section'>";
+                echo $this->renderCreateButton("review");
             echo "</section>";
             echo "<section class='main_content_review'>";
                 echo "<table>";
